@@ -9,6 +9,11 @@ This folder contains reference artifacts for the `drawio-mcp-diagramming` skill.
   - Use this as the canonical lookup for icon paths — **no scripts needed at agent runtime**.
   - Agent usage: `grep -i "keyword" references/azure2-complete-catalog.txt`
 
+- `images.txt`
+  - Selected icon inventory from `jgraph/drawio` GitHub tree under `/dev/src/main/webapp`
+  - Use this as the canonical lookup for icon paths — **no scripts needed at agent runtime**.
+  - Agent usage: `grep -i "keyword" references/images.txt`
+
 ## Refresh Workflow
 
 Refresh the catalog when draw.io updates its icon library (not required per-run):
