@@ -17,6 +17,7 @@ A growing collection of GitHub Copilot agents and reusable skills. This reposito
 | `apim-policy-author` | APIM Policy Author — generates production-ready Azure API Management policy XML for authentication, rate limiting, CORS, error handling, and transformations with hybrid auth best practices |
 | `azure-architect` | Azure Solutions Architect — designs production-ready architectures aligned to WAF and CAF |
 | `gh-aw-builder` | GitHub Agentic Workflow Builder — creates and configures markdown-based AI-powered GitHub Agentic Workflows (gh-aw) with proper frontmatter, MCP servers, safe-outputs, and best practices |
+| `terraform-provider-upgrade` | Terraform Provider Upgrade — safely upgrades Terraform providers, detects breaking changes, migrates removed resources with moved blocks, and ensures compatibility through comprehensive upgrade workflows |
 
 ## Skills
 
@@ -30,6 +31,7 @@ A growing collection of GitHub Copilot agents and reusable skills. This reposito
 | `cost-optimization` | Identifies cost reduction opportunities and quantifies savings across Azure workloads |
 | `drawio-mcp-diagramming` | Creates and edits architecture diagrams using the Draw.io MCP integration |
 | `gh-aw-operations` | Comprehensive skills for creating, compiling, debugging, and managing GitHub Agentic Workflows (gh-aw) |
+| `terraform-provider-upgrade` | Safe Terraform provider upgrades with automatic resource migration, breaking change detection, and state management using moved blocks |
 | `waf-assessment` | Assesses architectures across all five WAF pillars and provides scored recommendations |
 
 ## Usage
