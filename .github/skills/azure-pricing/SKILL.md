@@ -40,14 +40,14 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 
 > **Gotchas:**
 > - `SavingsPlan` is **NOT** a valid `price-type` value. To get savings plan rates use `include-savings-plan: true` alongside a `Consumption` query.
-> - Do **NOT** call the pricing tool with only a broad service name (e.g. `Virtual Machines`) and no SKU. Always ask the user for a specific SKU/tier first before invoking the tool.
+> - Prefer querying with a specific SKU rather than a broad service name alone — results will be more targeted and useful. Querying by service name without a SKU is valid when the user explicitly wants a full listing of available SKUs.
 
 ## Workflow
 
 ### Scenario 1: Single SKU / Service Price Lookup
 
 1. Extract the SKU, service name, or region from the user's request.
-2. **If the user has not specified a particular SKU or tier, ask them before calling the tool.** Never call the tool with only a broad service name and no SKU.
+2. **Prefer a specific SKU or tier.** If the user hasn't provided one and a full SKU listing isn't what they're after, ask for clarification before calling the tool.
 3. Call the pricing tool with the identified parameters.
 4. Present the result as a formatted price table (see Output Format below).
 
@@ -65,21 +65,29 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 3. Aggregate results into a total monthly cost estimate.
 4. Flag any resources where pricing could not be retrieved.
 
-**Terraform-specific parsing:**
+**Common Terraform resource mappings (examples — not exhaustive):**
 - `azurerm_app_service_plan` → `sku_name` (e.g. `P1v3`)
 - `azurerm_linux_virtual_machine` / `azurerm_windows_virtual_machine` → `size` (e.g. `Standard_D4s_v5`)
 - `azurerm_mssql_database` → `sku_name` (e.g. `GP_Gen5_4`)
 - `azurerm_storage_account` → `account_tier` + `account_replication_type` (e.g. `Standard_LRS`)
 - `azurerm_cosmosdb_account` → throughput settings
 - `azurerm_kubernetes_cluster` → `default_node_pool.vm_size` × node count
+- `azurerm_redis_cache` → `sku_name` + `family` + `capacity`
+- `azurerm_servicebus_namespace` → `sku`
+- `azurerm_api_management` → `sku_name`
+- `azurerm_container_app_environment` + `azurerm_container_app` → `workload_profile` / `cpu` + `memory`
 
-**Bicep/ARM parsing checklist:**
+**Common Bicep/ARM resource mappings (examples — not exhaustive):**
 - App Service Plans → SKU name (e.g. `P1v3`, `P2v3`)
 - Virtual Machines → VM size (e.g. `Standard_D4s_v5`)
 - Azure SQL → Service tier + compute size (e.g. `GP_Gen5_4`)
 - Storage Accounts → SKU + redundancy (e.g. `Standard_LRS`, `Premium_ZRS`)
 - Cosmos DB → Provisioned throughput (RU/s)
 - Azure Kubernetes Service → Node VM size × node count
+- Container Apps → workload profile + vCPU/memory allocation
+- API Management → SKU tier (e.g. `Developer`, `Premium`)
+
+> **⚠️ Azure Hybrid Benefit (AHB):** The retail pricing API returns pay-as-you-go rates and **never** reflects Azure Hybrid Benefit discounts. AHB can reduce costs by 40%+ for Windows VMs and SQL Server workloads. Always flag this when estimating costs for Windows or SQL resources, and direct users to the [Azure Hybrid Benefit calculator](https://azure.microsoft.com/pricing/hybrid-benefit/) for accurate figures.
 
 ### Scenario 3: Region Comparison
 
@@ -88,7 +96,7 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 3. Present a comparison table sorted by price (ascending).
 
 **Recommended region set for comparisons:**
-- `uksouth`, `ukwest`, `westeurope`, `northeurope`, `eastus`, `australiaeast`
+- `uksouth`, `ukwest`, `westeurope`, `northeurope`, `eastus`, `eastus2` etc
 
 ### Scenario 4: Price Type Comparison (Consumption vs Reservation)
 
@@ -108,6 +116,8 @@ Use the `filter` parameter for complex queries:
 
 ## Output Format
 
+> These are reference templates — adapt the format to context. A quick inline answer may need only a line or two; a full architecture document warrants the complete table format.
+
 ### Single Price Lookup
 
 ```markdown
@@ -119,13 +129,13 @@ Use the `filter` parameter for complex queries:
 | SKU | Standard_D4s_v5 |
 | Region | UK South |
 | Price Type | Consumption |
-| Retail Price | £0.158/hour |
-| Monthly Est. | ~£115/month (730 hrs) |
+| Retail Price | [from tool]/hour |
+| Monthly Est. | ~[from tool]/month (730 hrs) |
 | Currency | GBP |
 
-**Savings Plan (1-year):** ~£0.104/hour (~34% saving)
-**1-Year Reservation:** ~£0.095/hour (~40% saving)
-**3-Year Reservation:** ~£0.063/hour (~60% saving)
+**Savings Plan (1-year):** [from tool]/hour ([x]% saving vs Consumption)
+**1-Year Reservation:** [from tool]/hour ([x]% saving)
+**3-Year Reservation:** [from tool]/hour ([x]% saving)
 ```
 
 ### Template Cost Estimate
@@ -181,7 +191,7 @@ Use the `filter` parameter for complex queries:
 
 ## Common Service Name Reference
 
-Use these exact service names when calling the tool:
+The table below covers frequently used services — use the service name exactly as shown. For services not listed, try the exact Azure portal display name or use the `filter` parameter with an OData expression.
 
 | Azure Service | `service` Parameter Value |
 |---------------|--------------------------|
