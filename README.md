@@ -28,8 +28,9 @@ A growing collection of GitHub Copilot agents and reusable skills. This reposito
 | `apiops-deployment` | Guides APIM deployments using Bicep/Terraform and CI/CD pipelines |
 | `architecture-design` | Designs Azure architectures from requirements with service selection, cost estimates, and WAF alignment |
 | `azure-apim-architecture` | Analyses APIM architecture decisions including VNet topology, multi-environment strategies, and component trade-offs |
+| `azure-drawio-mcp-diagramming` | Creates and edits Azure architecture diagrams using the Draw.io MCP integration with reliable Azure icon rendering and troubleshooting |
 | `cost-optimization` | Identifies cost reduction opportunities and quantifies savings across Azure workloads |
-| `drawio-mcp-diagramming` | Creates and edits architecture diagrams using the Draw.io MCP integration |
+| `drawio-mcp-diagramming` | Creates and edits architecture diagrams using the Draw.io MCP integration with support for both Azure and AWS icon libraries |
 | `gh-aw-operations` | Comprehensive skills for creating, compiling, debugging, and managing GitHub Agentic Workflows (gh-aw) |
 | `terraform-provider-upgrade` | Safe Terraform provider upgrades with automatic resource migration, breaking change detection, and state management using moved blocks |
 | `waf-assessment` | Assesses architectures across all five WAF pillars and provides scored recommendations |
