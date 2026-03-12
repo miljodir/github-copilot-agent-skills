@@ -250,7 +250,7 @@ comprehensive security controls, and cost-optimized infrastructure.
 - Global reach with Azure Front Door CDN
 - Auto-scaling for traffic spikes (Black Friday, holidays)
 - PCI-DSS compliant payment processing
-- Estimated cost: $2,850/month (Production)
+- **Estimated cost**: see Section 10 — priced live via the `azure-pricing` skill per SKU and target region
 
 **Timeline:** 8-week implementation with phased rollout
 

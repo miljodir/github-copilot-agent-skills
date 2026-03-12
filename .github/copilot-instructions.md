@@ -193,7 +193,7 @@ Apply to ALL Azure resources:
 - **`architecture-design`**: Designing new solutions, selecting services and patterns
 - **`waf-assessment`**: Reviewing architectures, validating production-readiness
 - **`cost-optimization`**: Analyzing costs, finding savings opportunities
-- **`azure-pricing`**: Looking up real-time Azure retail pricing for SKUs, services, or regions; estimating deployment costs from Bicep/ARM templates; comparing Consumption vs Reservation pricing
+- **`azure-pricing`**: Looking up real-time Azure retail pricing for SKUs, services, or regions; estimating deployment costs from Bicep/ARM templates; comparing Consumption vs Reservation pricing. Always use **GBP** as the default currency (`currency: GBP`); pass `USD`, `EUR`, or another ISO code only when the user specifies a different currency
 
 ## Response Format
 

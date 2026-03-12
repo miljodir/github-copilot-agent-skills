@@ -34,7 +34,7 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 | `price-type` | Optional* | `Consumption`, `Reservation`, or `DevTestConsumption` |
 | `include-savings-plan` | Optional | `true` to include savings plan pricing (uses preview API; mainly applies to Linux VMs) |
 | `filter` | Optional* | Raw OData filter expression for advanced queries |
-| `currency` | Optional | Currency code (default: `USD`; e.g. `GBP`, `EUR`) |
+| `currency` | Optional | Currency code. **Skill default: `GBP`** — always pass this explicitly. The underlying tool defaults to `USD` if omitted. Other common values: `USD`, `EUR` |
 
 > *At least one filter parameter is required per call.
 

@@ -154,6 +154,8 @@ For each recommendation:
 
 ## Output Format
 
+> **Note:** All cost figures in the template below are illustrative placeholders. Before populating any analysis, use the **`azure-pricing` skill** (`pricing_get`) to retrieve actual retail prices per SKU and region (currency: GBP by default). Never copy heuristic dollar amounts into a real recommendation — always fetch live prices.
+
 ```markdown
 # Cost Optimization Analysis
 **Architecture**: [Name]
