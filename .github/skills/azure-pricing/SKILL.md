@@ -251,12 +251,13 @@ The table below covers frequently used services — use the service name exactly
 ## Error Handling
 
 If the pricing tool returns no results:
-1. Try broadening the query (remove SKU, keep only service + region).
-2. Verify the service name matches the Common Service Name Reference above.
-3. Try the `filter` parameter with an OData expression — this is more reliable than the `sku` parameter for services where the API `skuName` format differs from the portal/ARM name (e.g. App Service, SQL Database).
-4. If `skuName` format is unknown, query without it first to see what `skuName` values are returned, then narrow.
-5. If service name is unknown, use `service-family` alone (e.g. `service-family: Compute`, `service-family: Databases`) to discover what `serviceName` values exist in that family, then re-query with the correct name.
-6. Inform the user if pricing is unavailable for a specific SKU and suggest the nearest alternative.
+1. **Consult [SKU Name Quirks](references/SKU-NAME-QUIRKS.md)** — the API `skuName` often differs from the ARM/portal/IaC name (e.g. `P2v3` → `P2 v3`, `GP_Gen5_4` → `4 vCore`, `C1` → `C1 Cache Instance`).
+2. Try broadening the query (remove SKU, keep only service + region).
+3. Verify the service name matches the Common Service Name Reference above.
+4. Try the `filter` parameter with an OData expression — this is more reliable than the `sku` parameter for services where the API `skuName` format differs from the portal/ARM name (e.g. App Service, SQL Database).
+5. If `skuName` format is unknown, query without it first to see what `skuName` values are returned, then narrow.
+6. If service name is unknown, use `service-family` alone (e.g. `service-family: Compute`, `service-family: Databases`) to discover what `serviceName` values exist in that family, then re-query with the correct name.
+7. Inform the user if pricing is unavailable for a specific SKU and suggest the nearest alternative.
 
 If the pricing tool returns a **500 error**:
 - Check whether the query would resolve to `serviceFamily eq 'AI + Machine Learning'`. If so, this is a known MCP tool limitation — redirect the user to the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) or [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
@@ -270,3 +271,4 @@ If the pricing tool returns a **500 error**:
 - [Azure Savings Plans](https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/savings-plan-compute-overview)
 - [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) *(use directly — not queryable via MCP tool)*
 - [Cost Estimation Formulas](references/COST-FORMULAS.md) *(service-specific formulas, Spot pricing reference, pre-estimation guidance)*
+- [SKU Name Quirks](references/SKU-NAME-QUIRKS.md) *(ARM → API skuName mappings for App Service, SQL Database, Redis, Storage, APIM, Container Apps)*
