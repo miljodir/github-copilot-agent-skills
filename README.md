@@ -2,6 +2,8 @@
 
 A growing collection of GitHub Copilot agents and reusable skills. This repository is continuously updated with new agents and domain-specific skills designed to extend Copilot's capabilities across a range of engineering and architecture workflows.
 
+Several skills integrate with the **[Azure MCP Server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview)** (`ms-azuretools.vscode-azure-github-copilot` VS Code extension) to query live Azure data — including real-time retail pricing, resource graph, and service configuration — without requiring any additional `mcp.json` configuration. Skills that use Azure MCP are noted in the table below.
+
 ## Structure
 
 ```
@@ -29,6 +31,7 @@ A growing collection of GitHub Copilot agents and reusable skills. This reposito
 | `architecture-design` | Designs Azure architectures from requirements with service selection, cost estimates, and WAF alignment |
 | `azure-apim-architecture` | Analyses APIM architecture decisions including VNet topology, multi-environment strategies, and component trade-offs |
 | `azure-drawio-mcp-diagramming` | Creates and edits Azure architecture diagrams using the Draw.io MCP integration with reliable Azure icon rendering and troubleshooting |
+| `azure-pricing` | Uses the Azure MCP Server pricing tool to look up real-time Azure retail pricing for any service, SKU, or region; estimates deployment costs from Bicep/ARM/Terraform templates; compares Consumption vs Reservation pricing. Defaults to GBP. Includes reference files for cost formulas and SKU name quirks. [Requires Azure MCP.](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-mcp-server) |
 | `cost-optimization` | Identifies cost reduction opportunities and quantifies savings across Azure workloads |
 | `drawio-mcp-diagramming` | Creates and edits architecture diagrams using the Draw.io MCP integration with support for both Azure and AWS icon libraries |
 | `gh-aw-operations` | Comprehensive skills for creating, compiling, debugging, and managing GitHub Agentic Workflows (gh-aw) |
@@ -36,6 +39,13 @@ A growing collection of GitHub Copilot agents and reusable skills. This reposito
 | `waf-assessment` | Assesses architectures across all five WAF pillars and provides scored recommendations |
 
 ## Usage
+
+### Prerequisites
+
+- VS Code with the **GitHub Copilot** extension
+- For skills marked **Requires Azure MCP**: install the **[Azure VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot)** (`ms-azuretools.vscode-azure-github-copilot`) — the Azure MCP Server is registered automatically, no `mcp.json` configuration needed
+
+### Getting Started
 
 1. Clone or fork this repository.
 2. Open in VS Code with GitHub Copilot Chat enabled.
