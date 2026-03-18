@@ -1,14 +1,6 @@
 ---
 name: excalidraw-mcp-diagramming
-description: >-
-  Create and edit diagrams on a live Excalidraw canvas using the Excalidraw MCP
-  server. Use when asked to draw, diagram, sketch, or visualise architectures,
-  workflows, data flows, system designs, flowcharts, mind maps, or sequence
-  diagrams as an Excalidraw diagram. Trigger phrases include: "create an
-  excalidraw", "draw me a diagram of", "make a flowchart", "visualise the
-  system", "diagram this architecture", "export to PNG/SVG". Can export to PNG,
-  SVG, .excalidraw file, or a shareable URL. Do NOT use for Draw.io or
-  diagrams.net output (use drawio-mcp-diagramming instead).
+description: Create and edit diagrams on a live Excalidraw canvas using the Excalidraw MCP server. Use when asked to draw, diagram, sketch, or visualise architectures, workflows, data flows, system designs, flowcharts, mind maps, or sequence diagrams. Trigger phrases include "create an excalidraw", "draw me a diagram", "make a flowchart", "visualise the system", "diagram this architecture", "export to PNG/SVG". Can export to PNG, SVG, .excalidraw file, or a shareable URL. Do NOT use for Draw.io or diagrams.net output (use drawio-mcp-diagramming instead).
 ---
 
 # Excalidraw MCP Diagramming
