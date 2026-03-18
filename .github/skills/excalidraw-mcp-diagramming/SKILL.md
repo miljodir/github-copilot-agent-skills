@@ -18,6 +18,14 @@ updates in real time. You are not generating a static file — you are painting
 onto a shared whiteboard through MCP tools. The canvas persists between calls,
 so what you put on it in one call is visible in the next screenshot.
 
+## When to Use
+
+- The user asks to "create an excalidraw", "draw me a diagram", "make a flowchart", "visualise the system", or "diagram this architecture".
+- The user wants an Excalidraw canvas output (not Draw.io / diagrams.net — use `drawio-mcp-diagramming` for that).
+- The user wants to visualise an architecture, workflow, data flow, system design, mind map, or sequence diagram.
+- The user asks to export a diagram to PNG, SVG, `.excalidraw` file, or a shareable URL.
+- The user asks to update, change, or fix an existing Excalidraw diagram.
+
 ## Required MCP Server
 
 The `excalidraw` MCP server must be present in `.vscode/mcp.json`:
