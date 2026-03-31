@@ -27,6 +27,7 @@ Several skills integrate with the **[Azure MCP Server](https://learn.microsoft.c
 |-------|-------------|
 | `api-security-review` | Reviews API Management configurations against OWASP API Security Top 10 and Azure Security Benchmark |
 | `apim-policy-authoring` | Generates production-ready APIM policy XML for auth, rate limiting, CORS, and transformations |
+| `apm-package-author` | Creates and maintains [APM (Agent Package Manager)](https://microsoft.github.io/apm/) manifests for distributing GitHub Copilot skills, agents, and MCP servers as installable packages. Covers `apm.yml` authoring, package structure, MCP dependency wiring, branch-based installs, and troubleshooting. |
 | `apiops-deployment` | Guides APIM deployments using Bicep/Terraform and CI/CD pipelines |
 | `architecture-design` | Designs Azure architectures from requirements with service selection, cost estimates, and WAF alignment |
 | `azure-apim-architecture` | Analyses APIM architecture decisions including VNet topology, multi-environment strategies, and component trade-offs |
