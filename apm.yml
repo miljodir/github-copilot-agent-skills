@@ -6,6 +6,7 @@ description: >
   diagramming. Install all packages at once or pick individual bundles.
 author: thomast1906
 license: MIT
+target: vscode
 
 dependencies:
   apm:

@@ -5,6 +5,7 @@ description: >
   authoring, API security review, APIM architecture, and APIOps deployment.
 author: thomast1906
 license: MIT
+target: vscode
 
 dependencies:
   apm:

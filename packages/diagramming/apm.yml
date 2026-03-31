@@ -6,6 +6,7 @@ description: >
   diagramming via Excalidraw MCP.
 author: thomast1906
 license: MIT
+target: vscode
 
 dependencies:
   apm:

@@ -6,6 +6,7 @@ description: >
   Management package (APIM agent, policy authoring, security review, APIOps).
 author: thomast1906
 license: MIT
+target: vscode
 
 dependencies:
   apm:

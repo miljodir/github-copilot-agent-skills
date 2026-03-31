@@ -5,6 +5,7 @@ description: >
   skills and agents for GitHub Copilot.
 author: thomast1906
 license: MIT
+target: vscode
 
 dependencies:
   apm:
