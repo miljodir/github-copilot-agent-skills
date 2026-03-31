@@ -7,11 +7,17 @@ description: GitHub CLI (gh) simple reference to solve security issues and patch
 
 Simple reference for GitHub CLI (gh) - work seamlessly with GitHub from the command line.
 
-**Version:** 2.85.0 (current as of January 2026)
 
 ## Prerequisites
 
 gh cli is already installed and authenticated with standard permissions.
+
+## When to Use This Skill
+
+Activate this skill when users ask questions related to:
+
+- Github CLI commands for managing repositories, pull requests, issues, and workflows.
+- Automating security tasks using GitHub CLI.
 
 ## Goal
 
