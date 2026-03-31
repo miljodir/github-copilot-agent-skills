@@ -77,11 +77,12 @@ Skills are invoked automatically by Copilot based on relevance, or explicitly by
 | `drawio-mcp-diagramming` | Creates and edits architecture diagrams via the Draw.io MCP; supports both Azure2 and AWS4 icon libraries. Uses **Draw.io MCP**. |
 | `excalidraw-mcp-diagramming` | Creates and edits diagrams on a live Excalidraw canvas — architectures, flowcharts, sequence diagrams, mind maps; exports to PNG, SVG, `.excalidraw`, or shareable URL. Uses **Excalidraw MCP**. |
 
-### GitHub Workflows
+### GitHub Workflows & Package Management
 
 | Skill | Description |
 |---|---|
 | `gh-aw-operations` | Comprehensive knowledge for creating, debugging, and managing GitHub Agentic Workflows (gh-aw) — frontmatter spec, MCP wiring, safe-outputs, and common patterns |
+| `apm-package-author` | Creates and maintains [APM (Agent Package Manager)](https://microsoft.github.io/apm/) manifests for distributing GitHub Copilot skills, agents, and MCP servers as installable packages. Covers `apm.yml` authoring, package structure, MCP dependency wiring, branch-based installs, and troubleshooting. |
 
 ## Getting Started
 
