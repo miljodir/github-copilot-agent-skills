@@ -1,0 +1,16 @@
+name: dependency-patching-skills
+version: 1.0.0
+description: >
+  Dependency patching, LTS runtime updates, and .NET package upgrade skills and
+  agents for GitHub Copilot.
+author: thomast1906
+license: MIT
+target: vscode
+
+dependencies:
+  apm:
+    # Agents
+    - thomast1906/github-copilot-agent-skills/.github/agents/dependency-patch-manager.agent.md
+    # Skills
+    - thomast1906/github-copilot-agent-skills/.github/skills/dotnet-outdated
+    - thomast1906/github-copilot-agent-skills/.github/skills/gh-cli

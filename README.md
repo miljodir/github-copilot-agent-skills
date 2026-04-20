@@ -1,6 +1,6 @@
 # GitHub Copilot Agent Skills
 
-A growing collection of GitHub Copilot agents and reusable skills designed to extend Copilot's capabilities across engineering and architecture workflows. Skills are domain-specific bundles of knowledge, prompting logic, and MCP tool usage that Copilot loads automatically when relevant.
+A growing collection of GitHub Copilot agents and reusable skills designed to extend Copilot's capabilities across engineering, dependency patching, and architecture workflows. Skills are domain-specific bundles of knowledge, prompting logic, and MCP tool usage that Copilot loads automatically when relevant.
 
 ## Structure
 
@@ -36,6 +36,7 @@ Agents are pre-configured Copilot modes with domain-specific instructions and to
 |---|---|---|
 | `apim-policy-author.agent.md` | APIM Policy Author | Generates production-ready Azure API Management policy XML for authentication (OAuth 2.0, JWT, subscription keys), rate limiting, CORS, error handling, and request/response transformations |
 | `azure-architect.agent.md` | Azure Architect | Designs production-ready Azure architectures aligned to the Well-Architected Framework and Cloud Adoption Framework; produces HLD documents with service selection, cost estimates, and IaC |
+| `dependency-patch-manager.agent.md` | Dependency Patch Manager | Patches software libraries and runtime versions safely; avoids local Docker builds when a Dockerfile is present, uses LTS runtime targets, and relies on draft PR workflows plus GitHub Actions for final verification |
 | `gh-aw-builder.agent.md` | GitHub Agentic Workflow Builder | Creates and configures markdown-based GitHub Agentic Workflows (gh-aw) with correct frontmatter, MCP server wiring, safe-outputs, and best practices |
 | `terraform-change-manager.agent.md` | Terraform Change Manager | Implements Terraform code changes without running Terraform locally; commits and pushes branch changes, opens a draft PR, and relies on GitHub Actions plan output |
 | `terraform-provider-upgrade.agent.md` | Terraform Provider Upgrade | Safely upgrades Terraform providers, detects breaking changes, migrates removed resources using `moved` blocks, and validates compatibility |
@@ -69,6 +70,12 @@ Skills are invoked automatically by Copilot based on relevance, or explicitly by
 | Skill | Description |
 |---|---|
 | `terraform-provider-upgrade` | Safe Terraform provider upgrades with breaking change detection, automatic resource migration using `moved` blocks, and state management. Uses **Terraform MCP**. |
+
+### Dependency Management
+
+| Skill | Description |
+|---|---|
+| `dotnet-outdated` | Uses the `dotnet-outdated` global tool to report and upgrade outdated NuGet packages, preferring the latest stable version first and stepping back only when build, test, or compatibility issues require it. |
 
 ### Diagramming
 
@@ -105,6 +112,7 @@ apm install thomast1906/github-copilot-agent-skills --runtime vscode
 # Or pick a bundle
 apm install thomast1906/github-copilot-agent-skills/packages/architect --runtime vscode
 apm install thomast1906/github-copilot-agent-skills/packages/terraform --runtime vscode
+apm install thomast1906/github-copilot-agent-skills/packages/dependency-patching --runtime vscode
 apm install thomast1906/github-copilot-agent-skills/packages/diagramming --runtime vscode
 ```
 
@@ -112,6 +120,7 @@ apm install thomast1906/github-copilot-agent-skills/packages/diagramming --runti
 |---|---|
 | `packages/architect` | Design and review Azure architectures — service selection, WAF pillar assessments, and live pricing lookups. Includes the `azure-architect` agent and `architecture-design`, `waf-assessment`, `azure-pricing` skills. |
 | `packages/terraform` | Implements Terraform changes through branch commits and draft PRs, safely upgrades Terraform providers, and builds GitHub Agentic Workflows. Includes `terraform-change-manager`, `terraform-provider-upgrade`, and `gh-aw-builder` agents, matching skills, and the Terraform MCP (requires Docker). |
+| `packages/dependency-patching` | Patch application dependencies and runtime versions with LTS-aware guidance. Includes the `dependency-patch-manager` agent plus the `dotnet-outdated` and `gh-cli` skills. |
 | `packages/diagramming` | Create and edit architecture diagrams via Draw.io and Excalidraw MCP. Includes `drawio-mcp-diagramming`, `azure-drawio-mcp-diagramming`, and `excalidraw-mcp-diagramming` skills. |
 
 APM installs skills to `.github/skills/`, agents to `.github/agents/`, and configures MCP servers in `.vscode/mcp.json` automatically.
