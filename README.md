@@ -37,6 +37,7 @@ Agents are pre-configured Copilot modes with domain-specific instructions and to
 | `apim-policy-author.agent.md` | APIM Policy Author | Generates production-ready Azure API Management policy XML for authentication (OAuth 2.0, JWT, subscription keys), rate limiting, CORS, error handling, and request/response transformations |
 | `azure-architect.agent.md` | Azure Architect | Designs production-ready Azure architectures aligned to the Well-Architected Framework and Cloud Adoption Framework; produces HLD documents with service selection, cost estimates, and IaC |
 | `gh-aw-builder.agent.md` | GitHub Agentic Workflow Builder | Creates and configures markdown-based GitHub Agentic Workflows (gh-aw) with correct frontmatter, MCP server wiring, safe-outputs, and best practices |
+| `terraform-change-manager.agent.md` | Terraform Change Manager | Implements Terraform code changes without running Terraform locally; commits and pushes branch changes, opens a draft PR, and relies on GitHub Actions plan output |
 | `terraform-provider-upgrade.agent.md` | Terraform Provider Upgrade | Safely upgrades Terraform providers, detects breaking changes, migrates removed resources using `moved` blocks, and validates compatibility |
 
 ## Skills
@@ -110,7 +111,7 @@ apm install thomast1906/github-copilot-agent-skills/packages/diagramming --runti
 | Bundle | What's included |
 |---|---|
 | `packages/architect` | Design and review Azure architectures — service selection, WAF pillar assessments, and live pricing lookups. Includes the `azure-architect` agent and `architecture-design`, `waf-assessment`, `azure-pricing` skills. |
-| `packages/terraform` | Safely upgrade Terraform providers and build GitHub Agentic Workflows. Includes `terraform-provider-upgrade` and `gh-aw-builder` agents, matching skills, and the Terraform MCP (requires Docker). |
+| `packages/terraform` | Implements Terraform changes through branch commits and draft PRs, safely upgrades Terraform providers, and builds GitHub Agentic Workflows. Includes `terraform-change-manager`, `terraform-provider-upgrade`, and `gh-aw-builder` agents, matching skills, and the Terraform MCP (requires Docker). |
 | `packages/diagramming` | Create and edit architecture diagrams via Draw.io and Excalidraw MCP. Includes `drawio-mcp-diagramming`, `azure-drawio-mcp-diagramming`, and `excalidraw-mcp-diagramming` skills. |
 
 APM installs skills to `.github/skills/`, agents to `.github/agents/`, and configures MCP servers in `.vscode/mcp.json` automatically.

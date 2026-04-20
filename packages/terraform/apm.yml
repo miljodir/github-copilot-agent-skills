@@ -11,6 +11,7 @@ dependencies:
   apm:
     # Agents
     - thomast1906/github-copilot-agent-skills/.github/agents/terraform-provider-upgrade.agent.md
+    - thomast1906/github-copilot-agent-skills/.github/agents/terraform-change-manager.agent.md
     - thomast1906/github-copilot-agent-skills/.github/agents/gh-aw-builder.agent.md
     # Skills
     - thomast1906/github-copilot-agent-skills/.github/skills/terraform-provider-upgrade
