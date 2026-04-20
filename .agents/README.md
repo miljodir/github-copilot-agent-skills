@@ -1,0 +1,1 @@
+This folder is used to store skills and agents, but without including them in symlinks. E.g. they may be used in specific cases, but not available as default.
