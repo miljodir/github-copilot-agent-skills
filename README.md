@@ -2,7 +2,7 @@
 
 # GitHub Copilot Agent Skills
 
-Forked from https://github.com/miljodir/github-copilot-agent-skills/ and updated for usage in Miljødirektoratet.
+Forked from https://github.com/thomast1906/github-copilot-agent-skills/ and updated for usage in Miljødirektoratet.
 
 A growing collection of GitHub Copilot agents and reusable skills designed to extend Copilot's capabilities across engineering, dependency patching, and architecture workflows. Skills are domain-specific bundles of knowledge, prompting logic, and MCP tool usage that Copilot loads automatically when relevant.
 
@@ -12,6 +12,8 @@ A growing collection of GitHub Copilot agents and reusable skills designed to ex
 .github/
 ├── agents/
 └── skills/
+└── instructions/
+└── prompts/
 ```
 
 ## Prerequisites
@@ -60,14 +62,6 @@ Skills are invoked automatically by Copilot based on relevance, or explicitly by
 | `cost-optimization` 🚧 WIP | Identifies cost reduction opportunities across Azure workloads, quantifies savings, and calculates ROI. Uses **Azure MCP**. |
 | `azure-pricing` | Looks up real-time Azure retail pricing for any service, SKU, or region; estimates costs from Bicep/ARM/Terraform templates; compares Consumption vs Reservation pricing. Defaults to GBP. Uses **Azure MCP**. |
 
-### Azure API Management (APIM)
-
-| Skill | Description |
-|---|---|
-| `azure-apim-architecture` 🚧 WIP | Analyses APIM architecture decisions — VNet Internal vs External, Front Door vs App Gateway, workspaces vs instances, multi-environment strategies, and cost trade-offs |
-| `apim-policy-authoring` 🚧 WIP | Generates production-ready APIM policy XML for OAuth 2.0, JWT validation, subscription keys, rate limiting, CORS, error handling, and transformations |
-| `api-security-review` 🚧 WIP | Reviews APIM configurations against OWASP API Security Top 10, VNet Internal mode, Private Link, and Azure Security Benchmark |
-| `apiops-deployment` 🚧 WIP | Guides APIM deployments using Bicep/Terraform and CI/CD pipelines (GitHub Actions / Azure DevOps); covers dev→test→prod promotion |
 
 ### Infrastructure as Code
 
@@ -87,7 +81,6 @@ Skills are invoked automatically by Copilot based on relevance, or explicitly by
 |---|---|
 | `azure-drawio-mcp-diagramming` | Creates and edits Azure architecture diagrams via the Draw.io MCP; Azure-only icon library with icon catalog and rendering troubleshooting. Uses **Draw.io MCP**. |
 | `drawio-mcp-diagramming` | Creates and edits architecture diagrams via the Draw.io MCP; supports both Azure2 and AWS4 icon libraries. Uses **Draw.io MCP**. |
-| `excalidraw-mcp-diagramming` | Creates and edits diagrams on a live Excalidraw canvas — architectures, flowcharts, sequence diagrams, mind maps; exports to PNG, SVG, `.excalidraw`, or shareable URL. Uses **Excalidraw MCP**. |
 
 ### GitHub Workflows & Package Management
 
@@ -98,50 +91,10 @@ Skills are invoked automatically by Copilot based on relevance, or explicitly by
 
 ## Getting Started
 
-### Option A — APM (if using GitHub Copilot & vscode)
-
-Install individual bundles or all agents and skills at once using [APM (Agent Package Manager)](https://github.com/microsoft/apm).
-
-**Install APM:**
-```bash
-curl -sSL https://aka.ms/apm-unix | sh   # macOS / Linux
-irm https://aka.ms/apm-windows | iex     # Windows
-```
-
-**Install agents and skills:**
-```bash
-# All agents and skills
-apm install miljodir/github-copilot-agent-skills --runtime vscode
-
-# Or pick a bundle
-apm install miljodir/github-copilot-agent-skills/packages/architect --runtime vscode
-apm install miljodir/github-copilot-agent-skills/packages/terraform --runtime vscode
-apm install miljodir/github-copilot-agent-skills/packages/dependency-patching --runtime vscode
-apm install miljodir/github-copilot-agent-skills/packages/diagramming --runtime vscode
-```
-
-| Bundle | What's included |
-|---|---|
-| `packages/architect` | Design and review Azure architectures — service selection, WAF pillar assessments, and live pricing lookups. Includes the `azure-architect` agent and `architecture-design`, `waf-assessment`, `azure-pricing` skills. |
-| `packages/terraform` | Implements Terraform changes through branch commits and draft PRs, safely upgrades Terraform providers, and builds GitHub Agentic Workflows. Includes `terraform-change-manager`, `terraform-provider-upgrade`, and `gh-aw-builder` agents, matching skills, and the Terraform MCP (requires Docker). |
-| `packages/dependency-patching` | Patch application dependencies and runtime versions with LTS-aware guidance. Includes the `dependency-patch-manager` agent plus the `dotnet-outdated` and `gh-cli` skills. |
-| `packages/diagramming` | Create and edit architecture diagrams via Draw.io and Excalidraw MCP. Includes `drawio-mcp-diagramming`, `azure-drawio-mcp-diagramming`, and `excalidraw-mcp-diagramming` skills. |
-
-APM installs skills to `.github/skills/`, agents to `.github/agents/`, and configures MCP servers in `.vscode/mcp.json` automatically.
-
-> **Note:** The Azure MCP (used by `azure-pricing`, `waf-assessment`, `cost-optimization`, `architecture-design`) is provided by the **[Azure Tools](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot)** VS Code extension — install that separately.
-
 ---
 
-### Option B — Clone directly
+### Option A - Symlinks
 
-1. Clone or fork this repository.
-2. Open the folder in VS Code with GitHub Copilot Chat enabled.
-3. Skills and agents are registered via `.github/copilot-instructions.md` and load automatically.
-4. To invoke an agent, open Copilot Chat and select it from the agent picker (e.g. **Azure Architect**).
-5. To invoke a skill explicitly, ask Copilot by name — e.g. _"use the waf-assessment skill to review this architecture"_.
-6. For MCP-backed skills, ensure the relevant MCP server is running (see [Prerequisites → MCP Servers](#mcp-servers) above).
-
-## Contributing
-
-Each skill lives in its own directory under `.github/skills/` and follows a consistent structure: a `SKILL.md` defining purpose, inputs, output format, and tool usage, plus an optional `references/` folder for supporting data. New agents are added as `.agent.md` files under `.github/agents/`.
+1. Clone this repository.
+2. Create symlinks via the (./New-AgentSkillSymlinks.ps1)[./New-AgentSkillSymlinks.ps1] script
+   1. This script assumes placement of the cloned repo in the same root folder as your target repositories.

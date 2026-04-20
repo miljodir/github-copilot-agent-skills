@@ -3,6 +3,8 @@ $reposRoot = Split-Path -Parent $scriptRoot
 $sharedGithubRoot = Join-Path $scriptRoot ".github"
 
 $agentsTarget = Join-Path $sharedGithubRoot "agents"
+$instructionsTarget = Join-Path $sharedGithubRoot "instructions"
+$promptsTarget = Join-Path $sharedGithubRoot "prompts"
 $skillsTarget = Join-Path $sharedGithubRoot "skills"
 
 function Remove-ExistingPath {
@@ -39,11 +41,15 @@ Get-ChildItem -LiteralPath $reposRoot -Directory | Where-Object {
     New-Item -ItemType Directory -Path $repoGithubRoot -Force | Out-Null
 
     Set-SymbolicLink -Path (Join-Path $repoGithubRoot "agents") -Target $agentsTarget
+    Set-SymbolicLink -Path (Join-Path $repoGithubRoot "instructions") -Target $instructionsTarget
+    Set-SymbolicLink -Path (Join-Path $repoGithubRoot "prompts") -Target $promptsTarget
     Set-SymbolicLink -Path (Join-Path $repoGithubRoot "skills") -Target $skillsTarget
 
     $gitignorePath = Join-Path $repoPath ".gitignore"
     $entriesToAdd = @(
         ".github/agents",
+        ".github/instructions",
+        ".github/prompts",
         ".github/skills"
     )
 
