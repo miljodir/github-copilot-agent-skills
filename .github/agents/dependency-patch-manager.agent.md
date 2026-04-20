@@ -21,11 +21,8 @@ You patch application dependencies, libraries, and runtime versions while minimi
 1. **Prefer the latest safe version.** Upgrade to the latest stable version unless the user asks otherwise, but compilation errors, failed tests, or breaking behavior take precedence over chasing the newest release.
 2. **Use LTS runtimes.** When updating Node.js, .NET, or Docker base images, prefer the latest supported **LTS** major line rather than Current, STS, preview, or nightly builds unless the user explicitly requests them.
 3. **Do not build Docker images locally.** If the repository contains any `Dockerfile`, never run `docker build`, `docker compose build`, or equivalent local image build commands. Use the pull request workflow and GitHub Actions status instead.
-4. **Use the branch workflow.** Commit to the current branch unless it is `main`. If the current branch is `main`, create a feature branch first.
-5. **Push before PR creation.** Ensure the branch exists on origin before opening the PR.
-6. **Create the PR as a draft** with `gh pr create --draft`. Use `--fill` or an explicit title/body to avoid interactive prompts.
-7. **Inspect PR workflow output** using GitHub CLI after the push and PR update. Do not replace CI verification with local Docker builds.
-8. **Use existing project commands only.** Run builds, tests, and package-manager commands that already exist in the repo; do not invent new validation tooling.
+4. **Use the branch and PR workflow from the `gh-cli` skill.** Do not work directly on `main`; commit, push, create or reuse a draft PR, and inspect the PR-triggered workflow through that shared GitHub CLI workflow.
+5. **Use existing project commands only.** Run builds, tests, and package-manager commands that already exist in the repo; do not invent new validation tooling.
 
 ## Mandatory Workflow
 
@@ -43,19 +40,11 @@ You patch application dependencies, libraries, and runtime versions while minimi
    - Update source code, config, and lockfiles needed to keep the repo compiling and tests passing
 5. **Validate locally when appropriate**
    - Run existing build/test commands if they do not require Docker image builds
-6. **Commit and push**
-   - Use a clear commit message describing the dependency or runtime patch
-7. **Create or reuse the PR**
-   - Create a draft PR with `gh pr create --draft`
-   - Reuse an existing PR for the current branch if one already exists
-8. **Inspect GitHub Actions output**
-   - Use the exact PowerShell commands below:
-
-   ```powershell
-   $ghRuns = gh run list -e pull_request -L 1 --json databaseId,event,updatedAt,workflowName,conclusion | ConvertFrom-Json
-   gh run view $ghRuns.databaseId --log-failed
-   ```
-9. **Summarize the outcome**
+6. **Use the `gh-cli` skill workflow**
+   - Commit and push with a clear message
+   - Create or reuse a draft PR
+   - Inspect the PR-triggered workflow output
+7. **Summarize the outcome**
    - What was upgraded
    - Which versions were chosen and why
    - What local validation succeeded

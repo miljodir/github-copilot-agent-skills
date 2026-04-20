@@ -83,7 +83,7 @@ Use imports to leverage reusable agents and skills from other repositories.
 #### Import External Agent
 ```yaml
 imports:
-  - thomast1906/github-copilot-skills-terraform/.github/agents/terraform-provider-upgrade.agent.md@main
+  - miljodir/github-copilot-skills-terraform/.github/agents/terraform-provider-upgrade.agent.md@main
 ```
 
 **In markdown instructions:**

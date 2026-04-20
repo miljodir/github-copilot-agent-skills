@@ -39,18 +39,18 @@ version: 1.0.0
 description: >
   Azure architecture design, WAF/CAF assessment, and live pricing skills and
   agent for GitHub Copilot.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 
 dependencies:
   apm:
     # Agents
-    - thomast1906/github-copilot-agent-skills/.github/agents/azure-architect.agent.md
+    - miljodir/github-copilot-agent-skills/.github/agents/azure-architect.agent.md
     # Skills
-    - thomast1906/github-copilot-agent-skills/.github/skills/architecture-design
-    - thomast1906/github-copilot-agent-skills/.github/skills/waf-assessment
-    - thomast1906/github-copilot-agent-skills/.github/skills/azure-pricing
+    - miljodir/github-copilot-agent-skills/.github/skills/architecture-design
+    - miljodir/github-copilot-agent-skills/.github/skills/waf-assessment
+    - miljodir/github-copilot-agent-skills/.github/skills/azure-pricing
     # cost-optimization excluded — WIP
 ```
 
@@ -66,18 +66,18 @@ name: github-copilot-agent-skills
 version: 1.0.0
 description: >
   Install all agents, skills, and MCP configs from this repo at once.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 
 dependencies:
   apm:
-    - thomast1906/github-copilot-agent-skills/packages/architect
-    - thomast1906/github-copilot-agent-skills/packages/terraform
-    - thomast1906/github-copilot-agent-skills/packages/diagramming
+    - miljodir/github-copilot-agent-skills/packages/architect
+    - miljodir/github-copilot-agent-skills/packages/terraform
+    - miljodir/github-copilot-agent-skills/packages/diagramming
 ```
 
-Users install everything with: `apm install thomast1906/github-copilot-agent-skills --runtime vscode`
+Users install everything with: `apm install miljodir/github-copilot-agent-skills --runtime vscode`
 
 ---
 
@@ -92,15 +92,15 @@ version: 1.0.0
 description: >
   Draw.io and Excalidraw diagramming skills for GitHub Copilot, with MCP
   servers pre-configured.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 
 dependencies:
   apm:
-    - thomast1906/github-copilot-agent-skills/.github/skills/drawio-mcp-diagramming
-    - thomast1906/github-copilot-agent-skills/.github/skills/azure-drawio-mcp-diagramming
-    - thomast1906/github-copilot-agent-skills/.github/skills/excalidraw-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/drawio-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/azure-drawio-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/excalidraw-mcp-diagramming
   mcp:
     - name: drawio
       registry: false

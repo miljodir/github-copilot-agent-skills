@@ -462,7 +462,7 @@ For each workflow you create, ensure:
 **Importing Reusable Agents:**
 ```yaml
 imports:
-  - thomast1906/github-copilot-skills-terraform/.github/agents/terraform-provider-upgrade.agent.md@main
+  - miljodir/github-copilot-skills-terraform/.github/agents/terraform-provider-upgrade.agent.md@main
 ```
 
 **Using Specialized Skills:**

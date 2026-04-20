@@ -1,4 +1,8 @@
+
+
 # GitHub Copilot Agent Skills
+
+Forked from https://github.com/thomast1906/github-copilot-agent-skills/ and updated for usage in Miljødirektoratet.
 
 A growing collection of GitHub Copilot agents and reusable skills designed to extend Copilot's capabilities across engineering, dependency patching, and architecture workflows. Skills are domain-specific bundles of knowledge, prompting logic, and MCP tool usage that Copilot loads automatically when relevant.
 
