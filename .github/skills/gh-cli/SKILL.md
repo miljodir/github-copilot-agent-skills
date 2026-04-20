@@ -61,6 +61,12 @@ Existing upstream:
 git push
 ```
 
+If Remote changes come in conflict with your pushes:
+```bash
+git branch --set-upstream-to="origin/$(git branch --show-current)" (git branch --show-current) && git pull && git push
+```
+
+
 New upstream:
 
 ```bash
