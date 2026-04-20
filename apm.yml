@@ -2,7 +2,8 @@ name: github-copilot-agent-skills
 version: 1.0.0
 description: >
   A curated collection of GitHub Copilot agent skills, agents, and packages for
-  Azure architecture, Terraform, GitHub Agentic Workflows, and diagramming.
+  Azure architecture, Terraform, dependency patching, GitHub Agentic
+  Workflows, and diagramming.
   Install all packages at once or pick individual bundles.
 author: thomast1906
 license: MIT
@@ -12,4 +13,5 @@ dependencies:
   apm:
     - thomast1906/github-copilot-agent-skills/packages/architect
     - thomast1906/github-copilot-agent-skills/packages/terraform
+    - thomast1906/github-copilot-agent-skills/packages/dependency-patching
     - thomast1906/github-copilot-agent-skills/packages/diagramming
