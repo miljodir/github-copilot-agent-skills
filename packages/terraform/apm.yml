@@ -3,7 +3,7 @@ version: 1.0.0
 description: >
   Terraform provider upgrades, IaC deployment, and GitHub Agentic Workflow
   skills and agents for GitHub Copilot.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 

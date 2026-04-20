@@ -4,7 +4,7 @@ description: >
   Draw.io, Azure Draw.io, and Excalidraw diagramming skills for GitHub Copilot.
   Covers generic architecture diagrams, Azure-specific icons, and live canvas
   diagramming via Excalidraw MCP.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 

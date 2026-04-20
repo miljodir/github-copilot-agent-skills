@@ -3,7 +3,7 @@ version: 1.0.0
 description: >
   Azure architecture design, WAF/CAF assessment, and pricing skills and agent
   for GitHub Copilot.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 

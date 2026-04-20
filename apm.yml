@@ -5,7 +5,7 @@ description: >
   Azure architecture, Terraform, dependency patching, GitHub Agentic
   Workflows, and diagramming.
   Install all packages at once or pick individual bundles.
-author: thomast1906
+author: miljodir
 license: MIT
 target: vscode
 
