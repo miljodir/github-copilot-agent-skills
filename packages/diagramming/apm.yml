@@ -11,9 +11,9 @@ target: vscode
 dependencies:
   apm:
     # Skills
-    - thomast1906/github-copilot-agent-skills/.github/skills/drawio-mcp-diagramming
-    - thomast1906/github-copilot-agent-skills/.github/skills/azure-drawio-mcp-diagramming
-    - thomast1906/github-copilot-agent-skills/.github/skills/excalidraw-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/drawio-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/azure-drawio-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.github/skills/excalidraw-mcp-diagramming
   mcp:
     - name: drawio
       registry: false

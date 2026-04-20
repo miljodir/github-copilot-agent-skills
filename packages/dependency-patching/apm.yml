@@ -10,7 +10,7 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - thomast1906/github-copilot-agent-skills/.github/agents/dependency-patch-manager.agent.md
+    - miljodir/github-copilot-agent-skills/.github/agents/dependency-patch-manager.agent.md
     # Skills
-    - thomast1906/github-copilot-agent-skills/.github/skills/dotnet-outdated
-    - thomast1906/github-copilot-agent-skills/.github/skills/gh-cli
+    - miljodir/github-copilot-agent-skills/.github/skills/dotnet-outdated
+    - miljodir/github-copilot-agent-skills/.github/skills/gh-cli

@@ -2,7 +2,7 @@
 
 # GitHub Copilot Agent Skills
 
-Forked from https://github.com/thomast1906/github-copilot-agent-skills/ and updated for usage in Miljødirektoratet.
+Forked from https://github.com/miljodir/github-copilot-agent-skills/ and updated for usage in Miljødirektoratet.
 
 A growing collection of GitHub Copilot agents and reusable skills designed to extend Copilot's capabilities across engineering, dependency patching, and architecture workflows. Skills are domain-specific bundles of knowledge, prompting logic, and MCP tool usage that Copilot loads automatically when relevant.
 
@@ -111,13 +111,13 @@ irm https://aka.ms/apm-windows | iex     # Windows
 **Install agents and skills:**
 ```bash
 # All agents and skills
-apm install thomast1906/github-copilot-agent-skills --runtime vscode
+apm install miljodir/github-copilot-agent-skills --runtime vscode
 
 # Or pick a bundle
-apm install thomast1906/github-copilot-agent-skills/packages/architect --runtime vscode
-apm install thomast1906/github-copilot-agent-skills/packages/terraform --runtime vscode
-apm install thomast1906/github-copilot-agent-skills/packages/dependency-patching --runtime vscode
-apm install thomast1906/github-copilot-agent-skills/packages/diagramming --runtime vscode
+apm install miljodir/github-copilot-agent-skills/packages/architect --runtime vscode
+apm install miljodir/github-copilot-agent-skills/packages/terraform --runtime vscode
+apm install miljodir/github-copilot-agent-skills/packages/dependency-patching --runtime vscode
+apm install miljodir/github-copilot-agent-skills/packages/diagramming --runtime vscode
 ```
 
 | Bundle | What's included |

@@ -10,12 +10,12 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - thomast1906/github-copilot-agent-skills/.github/agents/terraform-provider-upgrade.agent.md
-    - thomast1906/github-copilot-agent-skills/.github/agents/terraform-change-manager.agent.md
-    - thomast1906/github-copilot-agent-skills/.github/agents/gh-aw-builder.agent.md
+    - miljodir/github-copilot-agent-skills/.github/agents/terraform-provider-upgrade.agent.md
+    - miljodir/github-copilot-agent-skills/.github/agents/terraform-change-manager.agent.md
+    - miljodir/github-copilot-agent-skills/.github/agents/gh-aw-builder.agent.md
     # Skills
-    - thomast1906/github-copilot-agent-skills/.github/skills/terraform-provider-upgrade
-    - thomast1906/github-copilot-agent-skills/.github/skills/gh-aw-operations
+    - miljodir/github-copilot-agent-skills/.github/skills/terraform-provider-upgrade
+    - miljodir/github-copilot-agent-skills/.github/skills/gh-aw-operations
   mcp:
     # Requires Docker to be running
     - name: terraform

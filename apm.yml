@@ -11,7 +11,7 @@ target: vscode
 
 dependencies:
   apm:
-    - thomast1906/github-copilot-agent-skills/packages/architect
-    - thomast1906/github-copilot-agent-skills/packages/terraform
-    - thomast1906/github-copilot-agent-skills/packages/dependency-patching
-    - thomast1906/github-copilot-agent-skills/packages/diagramming
+    - miljodir/github-copilot-agent-skills/packages/architect
+    - miljodir/github-copilot-agent-skills/packages/terraform
+    - miljodir/github-copilot-agent-skills/packages/dependency-patching
+    - miljodir/github-copilot-agent-skills/packages/diagramming
