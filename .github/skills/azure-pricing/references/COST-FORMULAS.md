@@ -37,7 +37,7 @@ Always query both if OS hasn't been confirmed.
 
 Query via `filter: "contains(meterName, 'Spot') and armSkuName eq '<sku>' and armRegionName eq '<region>'"` with `price-type: Consumption`.
 
-Live reference (uksouth, Standard_D4s_v5, tested March 2026):
+Live reference (norwayeast, Standard_D4s_v5, tested March 2026):
 
 | Type | Price/hr | Monthly est. | Saving vs PAYG |
 |------|----------|-------------|----------------|

@@ -9,11 +9,11 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 
 ## When to Use
 
-- "How much does `Standard_D4s_v5` cost in `uksouth`?"
+- "How much does `Standard_D4s_v5` cost in `norwayeast`?"
 - "Estimate the cost of this Bicep/ARM/Terraform template"
-- "Compare VM pricing between `uksouth` and `westeurope`"
+- "Compare VM pricing between `norwayeast` and `swedencentral`"
 - "Show me Reservation vs Consumption pricing for SQL Database"
-- "What are the cheapest storage SKUs in `uksouth`?"
+- "What are the cheapest storage SKUs in `norwayeast`?"
 - "Include savings plan pricing for this compute tier"
 - Any request for Azure pricing, cost estimates, or SKU comparisons
 
@@ -29,7 +29,7 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 |-----------|----------|-------------|
 | `sku` | Optional* | ARM SKU name (e.g. `Standard_D4s_v5`, `Standard_E64-16ds_v4`) |
 | `service` | Optional* | Azure service name (e.g. `Virtual Machines`, `Storage`, `SQL Database`) |
-| `region` | Optional* | Azure region slug (e.g. `eastus`, `westeurope`, `westus2`) |
+| `region` | Optional* | Azure region slug (e.g. `eastus`, `swedencentral`, `westus2`) |
 | `service-family` | Optional* | Service family (e.g. `Compute`, `Storage`, `Databases`, `Networking`) |
 | `price-type` | Optional* | `Consumption`, `Reservation`, or `DevTestConsumption` |
 | `include-savings-plan` | Optional | `true` to include savings plan pricing (uses preview API; mainly applies to Linux VMs) |
@@ -45,10 +45,10 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 > - **Reservation `retailPrice` values are lump-sum totals, not hourly rates.** Despite `unitOfMeasure: "1 Hour"`, Reservation price rows return the total commitment cost (annual or 3-year). Divide by 8,760 (1-year) or 26,280 (3-year) to get an hourly equivalent for comparison.
 > - **SQL Database compute and storage are separate meters.** You need two calls: one for compute (e.g. `4 vCore` under `SQL Database Single/Elastic Pool General Purpose - Compute Gen5`) and one for storage (`SQL Database Single/Elastic Pool General Purpose - Storage`). A single query returns both if you don't filter by `productName`.
 > - **SQL Database `skuName` in the API uses plain English, not ARM format.** The ARM SKU `GP_Gen5_4` maps to API `skuName: "4 vCore"` under `productName` containing `General Purpose - Compute Gen5`. Filter by both `skuName` and `productName` to avoid Business Critical or DC-Series rows returning alongside General Purpose.
-> - **Spot pricing requires the `filter` parameter, not `price-type`.** Spot is not a `price-type` value — use `filter: "contains(meterName, 'Spot') and armSkuName eq '<sku>' and armRegionName eq '<region>'"` with `price-type: Consumption`. Live-tested: Standard_D4s_v5 in `uksouth` returns Linux Spot at £0.0213/hr and Windows Spot at £0.039/hr (vs £0.164/hr and £0.300/hr standard — ~87% saving).
+> - **Spot pricing requires the `filter` parameter, not `price-type`.** Spot is not a `price-type` value — use `filter: "contains(meterName, 'Spot') and armSkuName eq '<sku>' and armRegionName eq '<region>'"` with `price-type: Consumption`. Live-tested: Standard_D4s_v5 in `norwayeast` returns Linux Spot at £0.0213/hr and Windows Spot at £0.039/hr (vs £0.164/hr and £0.300/hr standard — ~87% saving).
 > - **`isPrimaryMeterRegion eq true` in OData filter:** When using targeted `sku` + `region` queries, the MCP tool already returns only primary meter region rows. The `isPrimaryMeterRegion eq true` filter expression is useful when writing broad OData-only queries (without a locked region) that might otherwise return duplicate rows for the same SKU across meter variants.
 > - **`include-savings-plan: true` is incompatible with the `filter` parameter.** When `include-savings-plan: true` is set alongside an OData `filter`, the tool returns empty results. To retrieve savings plan data, use `sku` + `region` parameters only. The `savingsPlan` field is a nested array (`[{"term": "1 Year", "unitPrice": ...}, {"term": "3 Years", ...}]`) present only on Linux compute rows — Windows VM rows never include savings plan data.
-> - **`DevTestConsumption` waives the Windows OS license cost on VMs.** Windows VMs queried with `price-type: DevTestConsumption` return at Linux-equivalent prices (e.g. Standard_D4s_v5 uksouth: £0.164/hr, same as Linux PAYG). The Windows license is free under Dev/Test subscriptions. Always flag this when estimating costs for Dev/Test Windows VMs.
+> - **`DevTestConsumption` waives the Windows OS license cost on VMs.** Windows VMs queried with `price-type: DevTestConsumption` return at Linux-equivalent prices (e.g. Standard_D4s_v5 norwayeast: £0.164/hr, same as Linux PAYG). The Windows license is free under Dev/Test subscriptions. Always flag this when estimating costs for Dev/Test Windows VMs.
 > - **`Reservation` queries always return both 1-year and 3-year rows together.** There is no `reservation-term` parameter — it is silently ignored. To isolate a single term, combine `price-type: Reservation` with `filter: "reservationTerm eq '1 Year'"` or `filter: "reservationTerm eq '3 Years'"`. Parameters `top`, `skip`, and `meter-name` are also silently ignored by the MCP tool.
 > - **⚠️ Azure OpenAI / AI services cannot be queried via this MCP tool.** The Azure MCP pricing tool returns a 500 error for any query that resolves to the `AI + Machine Learning` service family — including `service: "Foundry Models"`, `service: "Azure OpenAI"`, `service-family: "AI + Machine Learning"`, and OData filters matching those services. This is a known MCP tool limitation. For AI model pricing (GPT-4o, text-embedding, etc.), use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) or the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) directly.
 
@@ -62,9 +62,9 @@ Fetch live Azure retail pricing data via the Azure MCP Server pricing tool and t
 4. Present the result as a formatted price table (see Output Format below).
 
 **Example prompts to tool:**
-- SKU in region: `{ "sku": "Standard_D4s_v5", "region": "uksouth", "currency": "GBP" }`
-- With reservation comparison: `{ "sku": "Standard_D4s_v5", "region": "uksouth", "price-type": "Reservation", "currency": "GBP" }`
-- With savings plan (Linux VMs only): `{ "sku": "Standard_D4s_v5", "region": "uksouth", "include-savings-plan": true, "currency": "GBP" }`
+- SKU in region: `{ "sku": "Standard_D4s_v5", "region": "norwayeast", "currency": "GBP" }`
+- With reservation comparison: `{ "sku": "Standard_D4s_v5", "region": "norwayeast", "price-type": "Reservation", "currency": "GBP" }`
+- With savings plan (Linux VMs only): `{ "sku": "Standard_D4s_v5", "region": "norwayeast", "include-savings-plan": true, "currency": "GBP" }`
 
 > Note: Calling with `service` alone (e.g. `"service": "Virtual Machines"`) without a `sku` returns all SKUs for that service — only do this if the user explicitly wants a full listing.
 
@@ -117,7 +117,7 @@ For always-on services (VMs, App Service, SQL Database), proceed directly with t
 3. Present a comparison table sorted by price (ascending).
 
 **Recommended region set for comparisons:**
-- `uksouth`, `ukwest`, `westeurope`, `northeurope`, `eastus`, `eastus2` etc
+- `norwayeast`, `ukwest`, `swedencentral`, `northeurope`, `eastus`, `eastus2` etc
 
 ### Scenario 4: Price Type Comparison (Consumption vs Reservation)
 
@@ -134,8 +134,8 @@ Use the `filter` parameter for complex queries:
 - Specific meter: `meterId eq 'abc-123'`
 - Price range: `retailPrice le 0.10`
 - Combined: `serviceName eq 'Storage' and skuName eq 'LRS' and armRegionName eq 'eastus'`
-- **Spot pricing:** `filter: "contains(meterName, 'Spot') and armSkuName eq 'Standard_D4s_v5' and armRegionName eq 'uksouth'"` with `price-type: Consumption` — returns Linux and Windows Spot rows separately
-- **Primary meter only (broad queries):** `filter: "serviceName eq 'Virtual Machines' and armRegionName eq 'uksouth' and isPrimaryMeterRegion eq true"` — avoids duplicate rows when not using a specific SKU
+- **Spot pricing:** `filter: "contains(meterName, 'Spot') and armSkuName eq 'Standard_D4s_v5' and armRegionName eq 'norwayeast'"` with `price-type: Consumption` — returns Linux and Windows Spot rows separately
+- **Primary meter only (broad queries):** `filter: "serviceName eq 'Virtual Machines' and armRegionName eq 'norwayeast' and isPrimaryMeterRegion eq true"` — avoids duplicate rows when not using a specific SKU
 
 > **Note:** Avoid OData filters that resolve to `serviceFamily eq 'AI + Machine Learning'` — the MCP tool will return a 500 error. See AI services note in Gotchas above.
 
@@ -170,7 +170,7 @@ Use the `filter` parameter for complex queries:
 ```markdown
 ## Deployment Cost Estimate
 **Template**: [filename or description]
-**Region**: uksouth
+**Region**: norwayeast
 **Currency**: GBP
 
 | Resource | SKU / Tier | Monthly Cost | Annual Cost |
@@ -203,7 +203,7 @@ Use the `filter` parameter for complex queries:
 | East US | £0.158 | £115 | 0% |
 | Australia East | £0.212 | £155 | +34% |
 
-**Recommendation**: `uksouth` offers the lowest cost within the UK for this SKU.
+**Recommendation**: `norwayeast` offers the lowest cost within the UK for this SKU.
 ```
 
 ## Integration with Other Skills

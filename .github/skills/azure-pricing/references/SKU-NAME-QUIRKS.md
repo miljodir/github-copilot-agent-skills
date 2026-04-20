@@ -56,7 +56,7 @@ sku: "S2"      → API skuName: "S2"
 sku: "P2v3"    → no results
 
 # Correct — use filter
-filter: "skuName eq 'P2 v3' and serviceName eq 'Azure App Service' and armRegionName eq 'uksouth'"
+filter: "skuName eq 'P2 v3' and serviceName eq 'Azure App Service' and armRegionName eq 'norwayeast'"
 ```
 
 Multiply the returned hourly `retailPrice` × 730 for monthly cost.
@@ -80,12 +80,12 @@ Multiply the returned hourly `retailPrice` × 730 for monthly cost.
 
 **Recommended filter (General Purpose, 4 vCore):**
 ```
-filter: "skuName eq '4 vCore' and contains(productName, 'General Purpose - Compute Gen5') and armRegionName eq 'uksouth'"
+filter: "skuName eq '4 vCore' and contains(productName, 'General Purpose - Compute Gen5') and armRegionName eq 'norwayeast'"
 ```
 
 **Always run two queries — compute and storage are separate meters:**
 1. Compute: filter by `skuName` + `productName` as above
-2. Storage: `filter: "contains(productName, 'General Purpose - Storage') and serviceName eq 'SQL Database' and armRegionName eq 'uksouth'"`
+2. Storage: `filter: "contains(productName, 'General Purpose - Storage') and serviceName eq 'SQL Database' and armRegionName eq 'norwayeast'"`
 
 Storage is priced per GB/month, not hourly.
 
@@ -110,7 +110,7 @@ Storage is priced per GB/month, not hourly.
 
 **Recommended filter (Standard C1):**
 ```
-filter: "skuName eq 'C1 Cache Instance' and contains(productName, 'Standard') and serviceName eq 'Redis Cache' and armRegionName eq 'uksouth'"
+filter: "skuName eq 'C1 Cache Instance' and contains(productName, 'Standard') and serviceName eq 'Redis Cache' and armRegionName eq 'norwayeast'"
 ```
 
 ---
@@ -125,10 +125,10 @@ filter: "skuName eq 'C1 Cache Instance' and contains(productName, 'Standard') an
 
 ```
 # Premium — returns per-unit hourly rate; multiply by unit count × 730
-sku: "Premium", region: "uksouth"
+sku: "Premium", region: "norwayeast"
 
 # Consumption — returns per-million-calls rate; multiply by monthly call volume
-filter: "skuName eq 'Consumption' and serviceName eq 'API Management' and armRegionName eq 'uksouth'"
+filter: "skuName eq 'Consumption' and serviceName eq 'API Management' and armRegionName eq 'norwayeast'"
 ```
 
 ---
@@ -147,7 +147,7 @@ SKU names match the portal (`Basic`, `Standard`, `Premium`). However:
 The `service` parameter returns a 400 error for Container Apps — there is no single ARM SKU. **Always use the OData `filter` parameter:**
 
 ```
-filter: "serviceName eq 'Azure Container Apps' and armRegionName eq 'uksouth'"
+filter: "serviceName eq 'Azure Container Apps' and armRegionName eq 'norwayeast'"
 ```
 
 See [COST-FORMULAS.md](COST-FORMULAS.md) for the three-component pricing formula (vCPU-seconds + GiB-seconds + requests).
@@ -169,7 +169,7 @@ The API drops the `Standard_` / `Premium_` prefix from storage SKUs:
 
 Use `filter` rather than `sku` for storage to avoid empty results:
 ```
-filter: "skuName eq 'LRS' and serviceName eq 'Storage' and armRegionName eq 'uksouth'"
+filter: "skuName eq 'LRS' and serviceName eq 'Storage' and armRegionName eq 'norwayeast'"
 ```
 
 ---

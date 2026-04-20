@@ -101,7 +101,7 @@ First, use `tool_search_tool_regex` with pattern `pricing` to discover the exact
 ```
 sku:      <ARM SKU e.g. Standard_D4ds_v5>
 service:  <e.g. Virtual Machines, Azure Kubernetes Service>
-region:   <ARM region slug e.g. uksouth, eastus>
+region:   <ARM region slug e.g. norwayeast, eastus>
 currency: GBP
 price-type: Consumption          # on-demand baseline
 include-savings-plan: true       # returns 1yr/3yr rates in nested array
