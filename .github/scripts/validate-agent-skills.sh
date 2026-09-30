@@ -7,10 +7,16 @@ echo ""
 FAILED=0
 MAX_LINES=500
 MIN_DESC_LENGTH=30
+shopt -s nullglob
+SKILL_FILES=(.github/skills/*/SKILL.md .agents/skills/*/SKILL.md)
+if [ "${#SKILL_FILES[@]}" -eq 0 ]; then
+  echo "No skills found in .github/skills or .agents/skills"
+  exit 1
+fi
 
 # Check file sizes
 echo "📏 Checking SKILL.md file sizes (max $MAX_LINES lines)..."
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     LINE_COUNT=$(wc -l < "$skill_file")
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
@@ -30,7 +36,7 @@ echo ""
 
 # Check frontmatter format
 echo "📝 Checking frontmatter format..."
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
     printf "   %-30s " "$SKILL_NAME:"
@@ -74,7 +80,7 @@ echo ""
 # Check for code blocks wrapping frontmatter
 echo "🔍 Checking for code block issues..."
 CODE_BLOCK_FAILED=0
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
     
@@ -93,7 +99,7 @@ echo ""
 
 # Check description length
 echo "📋 Checking description length (min $MIN_DESC_LENGTH chars)..."
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
     DESC=$(sed -n '2,10p' "$skill_file" | grep "^description:" | sed 's/^description: *//')
@@ -111,7 +117,7 @@ echo ""
 
 # Check "When to Use" section exists in skills
 echo "🎯 Checking for '## When to Use' section..."
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
     printf "   %-30s " "$SKILL_NAME:"
@@ -127,7 +133,7 @@ echo ""
 
 # Check for duplicate skill names
 echo "🔁 Checking for duplicate skill names..."
-NAMES=$(for f in .github/skills/*/SKILL.md; do sed -n '2,10p' "$f" | grep "^name:" | sed 's/^name: *//'; done)
+NAMES=$(for f in "${SKILL_FILES[@]}"; do sed -n '2,10p' "$f" | grep "^name:" | sed 's/^name: *//'; done)
 DUPES=$(echo "$NAMES" | sort | uniq -d)
 if [ -n "$DUPES" ]; then
   echo "   ❌ Duplicate skill names found: $DUPES"
@@ -140,12 +146,13 @@ echo ""
 # Check broken internal file references in skills
 echo "🔗 Checking internal file references in skills..."
 SKILL_REF_FAILED=0
-for skill_file in .github/skills/*/SKILL.md; do
+for skill_file in "${SKILL_FILES[@]}"; do
   if [ -f "$skill_file" ]; then
     SKILL_NAME=$(dirname "$skill_file" | xargs basename)
     # Extract relative markdown links like (references/FOO.md) or (./references/FOO.md)
     while IFS= read -r ref; do
-      ref_path="$(dirname "$skill_file")/$ref"
+      ref_file="${ref%%#*}"  # strip anchor fragment before checking file existence
+      ref_path="$(dirname "$skill_file")/$ref_file"
       if [ ! -f "$ref_path" ]; then
         echo "   ❌ $SKILL_NAME: broken reference → $ref"
         FAILED=1

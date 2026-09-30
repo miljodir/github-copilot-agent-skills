@@ -46,10 +46,10 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - miljodir/github-copilot-agent-skills/.github/agents/azure-architect.agent.md
+    - miljodir/github-copilot-agent-skills/.agents/azure-architect.agent.md
     # Skills
-    - miljodir/github-copilot-agent-skills/.github/skills/architecture-design
-    - miljodir/github-copilot-agent-skills/.github/skills/waf-assessment
+    - miljodir/github-copilot-agent-skills/.agents/skills/architecture-design
+    - miljodir/github-copilot-agent-skills/.agents/skills/waf-assessment
     - miljodir/github-copilot-agent-skills/.github/skills/azure-pricing
     # cost-optimization excluded — WIP
 ```
@@ -90,7 +90,7 @@ Add an `mcp:` block alongside `apm:` to inject server config into the target pro
 name: diagramming-skills
 version: 1.0.0
 description: >
-  Draw.io and Excalidraw diagramming skills for GitHub Copilot, with MCP
+  Draw.io diagramming skills for GitHub Copilot, with MCP
   servers pre-configured.
 author: miljodir
 license: MIT
@@ -98,18 +98,13 @@ target: vscode
 
 dependencies:
   apm:
-    - miljodir/github-copilot-agent-skills/.github/skills/drawio-mcp-diagramming
-    - miljodir/github-copilot-agent-skills/.github/skills/azure-drawio-mcp-diagramming
-    - miljodir/github-copilot-agent-skills/.github/skills/excalidraw-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.agents/skills/drawio-mcp-diagramming
+    - miljodir/github-copilot-agent-skills/.agents/skills/azure-drawio-mcp-diagramming
   mcp:
     - name: drawio
       registry: false
       transport: http
       url: "https://mcp.draw.io/mcp"
-    - name: excalidraw
-      registry: false
-      transport: http
-      url: "https://mcp.excalidraw.com"
 ```
 
 ---

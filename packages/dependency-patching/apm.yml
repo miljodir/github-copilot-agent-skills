@@ -1,5 +1,5 @@
 name: dependency-patching-skills
-version: 1.0.0
+version: 1.0.1
 description: >
   Dependency patching, LTS runtime updates, and .NET package upgrade skills and
   agents for GitHub Copilot.
@@ -10,7 +10,7 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - miljodir/github-copilot-agent-skills/.github/agents/dependency-patch-manager.agent.md
+    - miljodir/github-copilot-agent-skills/.agents/dependency-patch-manager.agent.md
     # Skills
-    - miljodir/github-copilot-agent-skills/.github/skills/dotnet-outdated
+    - miljodir/github-copilot-agent-skills/.agents/skills/dotnet-outdated
     - miljodir/github-copilot-agent-skills/.github/skills/gh-cli

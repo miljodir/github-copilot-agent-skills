@@ -19,7 +19,7 @@ This folder contains reference artifacts for the `drawio-mcp-diagramming` skill.
 Refresh the catalog when draw.io updates its icon library (not required per-run):
 
 ```bash
-cd .github/skills/drawio-mcp-diagramming/scripts
+cd .agents/skills/azure-drawio-mcp-diagramming/scripts
 python3 search_azure2_icons_github.py --max-results 9999 > ../references/azure2-complete-catalog.txt
 ```
 

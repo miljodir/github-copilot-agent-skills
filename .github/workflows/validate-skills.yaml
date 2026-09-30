@@ -4,20 +4,36 @@ on:
   pull_request:
     paths:
       - '.github/skills/**'
+      - '.agents/**'
+      - '.github/agents/**'
+      - '.github/scripts/**'
+      - '.github/workflows/validate-skills.yaml'
+      - 'packages/**'
+      - 'apm.yml'
   push:
     branches:
       - main
     paths:
       - '.github/skills/**'
+      - '.agents/**'
+      - '.github/agents/**'
+      - '.github/scripts/**'
+      - '.github/workflows/validate-skills.yaml'
+      - 'packages/**'
+      - 'apm.yml'
+
+permissions:
+  contents: read
 
 jobs:
   validate-skills:
     name: Validate Skills Format
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       
       - name: Run skill validation
         run: ./.github/scripts/validate-agent-skills.sh

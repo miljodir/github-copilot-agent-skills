@@ -60,7 +60,7 @@ You are a Terraform provider upgrade specialist focused on safely upgrading Terr
 
 When upgrading providers, leverage these skills:
 
-- **terraform-provider-upgrade** (`.github/skills/terraform-provider-upgrade/SKILL.md`) - Complete upgrade workflow, breaking change detection, resource migration patterns
+- **terraform-provider-upgrade** (`.agents/skills/terraform-provider-upgrade/SKILL.md`) - Complete upgrade workflow, breaking change detection, resource migration patterns
 
 ## What This Agent Does
 
