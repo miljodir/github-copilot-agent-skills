@@ -1,5 +1,5 @@
 name: terraform-deployer-skills
-version: 1.0.0
+version: 1.1.0
 description: >
   Terraform provider upgrades, IaC deployment, and GitHub Agentic Workflow
   skills and agents for GitHub Copilot.
@@ -10,12 +10,13 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - miljodir/github-copilot-agent-skills/.github/agents/terraform-provider-upgrade.agent.md
+    - miljodir/github-copilot-agent-skills/.agents/terraform-provider-upgrade.agent.md
     - miljodir/github-copilot-agent-skills/.github/agents/terraform-change-manager.agent.md
-    - miljodir/github-copilot-agent-skills/.github/agents/gh-aw-builder.agent.md
+    - miljodir/github-copilot-agent-skills/.agents/gh-aw-builder.agent.md
     # Skills
-    - miljodir/github-copilot-agent-skills/.github/skills/terraform-provider-upgrade
-    - miljodir/github-copilot-agent-skills/.github/skills/gh-aw-operations
+    - miljodir/github-copilot-agent-skills/.agents/skills/terraform-module-creator
+    - miljodir/github-copilot-agent-skills/.agents/skills/terraform-provider-upgrade
+    - miljodir/github-copilot-agent-skills/.agents/skills/gh-aw-operations
   mcp:
     # Requires Docker to be running
     - name: terraform
@@ -30,7 +31,7 @@ dependencies:
         - TFE_TOKEN
         - -e
         - TFE_ADDRESS
-        - hashicorp/terraform-mcp-server:0.3.3
+        - hashicorp/terraform-mcp-server:0.5.1
       env:
         TFE_TOKEN: "${input:tfe_token}"
         TFE_ADDRESS: "${input:tfe_address}"

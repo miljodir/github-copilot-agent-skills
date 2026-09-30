@@ -1,1 +1,3 @@
-This folder is used to store skills and agents, but without including them in symlinks. E.g. they may be used in specific cases, but not available as default.
+This folder stores specialized skills and optional agent source files. Skills can be discovered by Copilot and installed per user with `gh skill install` (`--allow-hidden-dirs` is required for this repository). APM packages reference these source paths and deploy bundled agents to the selected client's native agent directory. Files directly under `.agents/` are not Copilot's native `.github/agents/` installation location.
+
+See the [repository README](../README.md) for copy-based personal installation and the curated package catalogue. Symlink-based installation is legacy and not recommended.

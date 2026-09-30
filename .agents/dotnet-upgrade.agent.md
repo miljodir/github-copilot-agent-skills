@@ -215,7 +215,7 @@ ENTRYPOINT ["dotnet", "MyApp.WebApi.dll"]
 ## Skills to Reference
 
 - **gh-cli** (`.github/skills/gh-cli/SKILL.md`) - Branching, draft PR creation, and GitHub Actions workflow inspection
-- **dotnet-outdated** (`.github/skills/dotnet-outdated/SKILL.md`) - NuGet discovery and upgrade workflow
+- **dotnet-outdated** (`.agents/skills/dotnet-outdated/SKILL.md`) - NuGet discovery and upgrade workflow
 
 ## Communication Style
 

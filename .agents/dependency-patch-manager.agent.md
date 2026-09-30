@@ -58,7 +58,7 @@ You patch application dependencies, libraries, and runtime versions while minimi
 
 ## Skills to Reference
 
-- **dotnet-outdated** (`.github/skills/dotnet-outdated/SKILL.md`) - .NET and NuGet package discovery and upgrade workflow
+- **dotnet-outdated** (`.agents/skills/dotnet-outdated/SKILL.md`) - .NET and NuGet package discovery and upgrade workflow
 - **gh-cli** (`.github/skills/gh-cli/SKILL.md`) - GitHub CLI usage for draft PRs and workflow inspection
 
 ## Communication Style

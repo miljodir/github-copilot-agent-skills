@@ -1,5 +1,5 @@
 name: azure-architect-skills
-version: 1.0.0
+version: 1.0.1
 description: >
   Azure architecture design, WAF/CAF assessment, and pricing skills and agent
   for GitHub Copilot.
@@ -10,8 +10,8 @@ target: vscode
 dependencies:
   apm:
     # Agents
-    - miljodir/github-copilot-agent-skills/.github/agents/azure-architect.agent.md
+    - miljodir/github-copilot-agent-skills/.agents/azure-architect.agent.md
     # Skills
-    - miljodir/github-copilot-agent-skills/.github/skills/architecture-design
-    - miljodir/github-copilot-agent-skills/.github/skills/waf-assessment
+    - miljodir/github-copilot-agent-skills/.agents/skills/architecture-design
+    - miljodir/github-copilot-agent-skills/.agents/skills/waf-assessment
     - miljodir/github-copilot-agent-skills/.github/skills/azure-pricing
